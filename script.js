@@ -9,6 +9,8 @@ $(function () {
 getTime()
 
 $(".saveBtn").click(function(){
+let dataHour = $(this).parent().data("hour")
+console.log(dataHour);
     let timeblockHourId = $(this).parent().attr("id")
     let userInput = $(this).prev().val()
     console.log(timeblockHourId);
@@ -18,11 +20,34 @@ $(".saveBtn").click(function(){
 
 function setColor () {
     let currentHour = dayjs().hour()
-    console.log(currentHour)
+    console.log(currentHour);
+
+$(".time-block").each(function () {
+let timeblockHour = $(this).data("hour")
+console.log(timeblockHour);
+
+if(timeblockHour === currentHour) {
+$(this).addClass("present")
+}else if (timeblockHour < currentHour) {
+    $(this).addClass("past")
+}else {
+    $(this).addClass("future")
+}
+})
 }
 
 setColor()
 
+function getLocalStorage (){
+    $(".description").each(function (){
+        let key = $(this).parent().attr("id")
+        // $(this).val(localStorage.getItem())
+        console.log(key);
+        $(this).val(localStorage.getItem(key))
+    })
+}
+
+getLocalStorage()
 
 });
 
