@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     
     
  function getTime() {   
@@ -8,11 +8,20 @@ $(function() {
 
 getTime()
 
+$(".saveBtn").click(function(){
+    let timeblockHourId = $(this).parent().attr("id")
+    let userInput = $(this).prev().val()
+    console.log(timeblockHourId);
+    console.log(userInput);
+    localStorage.setItem(timeblockHourId, userInput)
+})
 
+function setColor () {
+    let currentHour = dayjs().hour()
+    console.log(currentHour)
+}
 
-
-
-
+setColor()
 
 
 });
